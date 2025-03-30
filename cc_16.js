@@ -33,3 +33,18 @@ async function fetchProductsAsync() { //creates an async function that uses try 
     handleError(error); //sends the catch to a helper function
   }
 }
+
+//Task 4: Display the Products
+function displayProducts(products) { // creates a function to display the product images
+  const container = document.getElementById('product-container'); // grabs the container by using its ID
+  container.innerHTML = ''; // clear container before rendering
+
+  products.slice(0, 5).forEach(product => { // goes through the first 5 products
+    const { name, price, image } = product.fields;
+
+    const productDiv = document.createElement('div'); //creates a div
+    productDiv.className = 'product'; 
+    productDiv.innerHTML = `<img src="${image[0].url}" alt="${name}" /><h3>${name}</h3><p>Price: $${(price / 100).toFixed(2)}</p>`;// makes the inner html content the name, price, and image
+    container.appendChild(productDiv);// appends the container by adding the div
+  });
+}
